@@ -1,0 +1,20 @@
+{% extends 'stands/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1 class="text-secondary my-4">Listagem</h1>
+            <div class="card w-75 mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">Stand: {{ reserva.stand }}</h5>
+                  <p class="card-text">Nome da Empresa: {{ reserva.nome_empresa }}</p>
+                  <p class="card-text">Categoria: {{ reserva.categoria_empresa }}</p>
+                  <p class="card-text">Quitado: {% if reserva.quitado == True %} Sim {% else %} Não {% endif %}</p>
+                  <p class="card-text">CNPJ: {{ reserva.cnpj }}</p>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

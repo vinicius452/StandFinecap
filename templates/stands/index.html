@@ -1,0 +1,40 @@
+{% extends 'stands/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container pt-3">
+    <h1 class="text-secondary" >Listagem de Reservas</h1>
+    <div class="row mt-4">
+        <table class="table align-middle mb-0 bg-white bt-4">
+            <thead class="bg-light">
+              <tr>
+                <th class="text-secondary">Stand</th>
+                <th class="text-secondary">Nome</th>
+                <th class="text-secondary">Quitado</th>
+                <th class="text-secondary">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reserva in reservas %}
+              <tr>
+                <td>{{ reserva.nome_empresa }}</td>
+                <td>{{ reserva.stand }}</td>
+                <td>{% if reserva.quitado == True %} Sim {% else %} Não {% endif %}</td>
+                <td>
+                  <a href="{% url 'detalhe' reserva.id %}" class="text-secondary me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                  </a>
+                  <a href="{% url 'deletar' reserva.id %}" class="text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                      <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+{% endblock content %}
