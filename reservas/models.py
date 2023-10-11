@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Stand(models.Model):
@@ -15,6 +16,7 @@ class Reserva(models.Model):
     nome_empresa = models.CharField(max_length=100)
     categoria_empresa = models.CharField(max_length=50)
     quitado = models.BooleanField(default=False)
+    data = models.DateField(default=timezone.now, editable=False)
 
     def __str__(self):
         return self.stand

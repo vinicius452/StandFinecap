@@ -5,6 +5,28 @@ from .models import Reserva
 
 def index(request):
     reservas = Reserva.objects.all()
+
+    nome = request.GET.get('nome')
+    valor = request.GET.get('valor')
+    quitado = request.GET.get('quitado')
+    nao_quitado = request.GET.get('nao_quitado')
+    data = request.GET.get('data')
+
+    if nome:
+        reservas = reservas.filter(nome_empresa__icontains=nome)
+
+    if valor:
+        reservas = reservas.filter(stand__valor=valor)
+
+    if quitado is not None:
+        reservas = reservas.filter(quitado=str(quitado))
+
+    if nao_quitado is not None:
+        reservas = reservas.filter(quitado=str(nao_quitado))
+
+    if data:
+        reservas = reservas.filter(data__gte=data)
+
     return render(request, 'stands/index.html', {'reservas': reservas})
 
 
